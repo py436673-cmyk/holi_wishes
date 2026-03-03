@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Holi My Love!</title>
+    <style>
+        :root {
+            --pink: #ff007f;
+            --yellow: #ffd700;
+            --purple: #8a2be2;
+            --orange: #ff4500;
+            --green: #32cd32;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fff5f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid var(--pink);
+            max-width: 90%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 8px dashed var(--orange);
+            overflow: hidden;
+            position: relative;
+            background: #eee;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: var(--pink);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px #fff;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--purple);
+        }
+
+        /* Background Splashes */
+        .splash {
+            position: absolute;
+            z-index: 1;
+            filter: blur(40px);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: pulse 5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: var(--pink);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background: var(--purple);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="splash" style="width: 300px; height: 300px; background: var(--yellow); top: -50px; left: -50px;"></div>
+    <div class="splash" style="width: 250px; height: 250px; background: var(--green); bottom: -50px; right: -50px;"></div>
+    <div class="splash" style="width: 200px; height: 200px; background: var(--orange); top: 40%; right: -30px;"></div>
+
+    <div class="container">
+        <div class="photo-frame">
+            <img src="https://via.placeholder.com/200" alt="Her Beautiful Smile" id="gf-photo">
+        </div>
+        
+        <h1>Happy Holi, Beautiful! 🌈</h1>
+        <p>May your life be as <span class="highlight">vibrant</span> and <span class="highlight">colorful</span> as the festival itself.</p>
+        <p>Adding a little extra color to your day because you make my world so bright!</p>
+        
+        <button class="btn" onclick="addColor()">Splash More Color!</button>
+    </div>
+
+    <script>
+        function addColor() {
+            const colors = ['#ff007f', '#ffd700', '#8a2be2', '#ff4500', '#32cd32', '#00ced1'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            const div = document.createElement('div');
+            div.style.position = 'fixed';
+            div.style.left = Math.random() * window.innerWidth + 'px';
+            div.style.top = Math.random() * window.innerHeight + 'px';
+            div.style.width = '100px';
+            div.style.height = '100px';
+            div.style.background = randomColor;
+            div.style.borderRadius = '50%';
+            div.style.filter = 'blur(30px)';
+            div.style.opacity = '0.7';
+            div.style.zIndex = '5';
+            div.style.transition = 'all 2s ease-out';
+            
+            document.body.appendChild(div);
+            
+            setTimeout(() => {
+                div.style.transform = 'scale(3)';
+                div.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                div.remove();
+            }, 2000);
+        }
+
+        // Automatic color splashes on load
+        setInterval(addColor, 1500);
+    </script>
+</body>
+</html>
